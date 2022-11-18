@@ -10,6 +10,25 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QGroupBox, QLine
 
 class MyApp(QMainWindow):
 
+    USER_ID =[
+        "woowakgood",
+        "vo_ine",
+        "jingburger",
+        "lilpaaaaaa",
+        "cotton__123",
+        "gosegugosegu",
+        "viichan6"
+    ]
+    CHECKBOX_NAME=[
+        "왁굳형",
+        "아이네",
+        "징버거",
+        "릴파",
+        "주르르",
+        "고세구",
+        "비챤"
+    ]
+
     def __init__(self):
         super().__init__()
         self.GetConfigure()
@@ -20,7 +39,7 @@ class MyApp(QMainWindow):
         startbutton = QPushButton('Stream Record Start')
         def StartTwitchRecorder():
             
-            checked_list = [self.config["USER_ID"][idx] for idx, ch in enumerate(self.checkbox_list) if ch.isChecked()]
+            checked_list = [self.USER_ID[idx] for idx, ch in enumerate(self.checkbox_list) if ch.isChecked()]
             print(checked_list)
             if len(checked_list) == 0:
                 QMessageBox.information(self,"Warning","Nobody selected")
@@ -106,7 +125,7 @@ class MyApp(QMainWindow):
         all = QPushButton('전체 선택')
         all_bool = True
         
-        self.checkbox_list = [QCheckBox(text) for text in self.config["CHECKBOX_NAME"]]
+        self.checkbox_list = [QCheckBox(text) for text in self.CHECKBOX_NAME]
         self.checkbox_list[0].setChecked(True)
 
         # wak = QCheckBox('왁굳형')

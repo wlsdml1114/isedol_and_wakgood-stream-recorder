@@ -8,8 +8,11 @@ It is an improved version of [junian's twitch-recorder](https://gist.github.com/
     * ffmpeg library path must add to environment variable PATH
         * Path\to\Extract\ffmpeg-something-full_build\bin 
         * ex) C:\Users\user\Downloads\ffmpeg-2022-11-03-git-5ccd4d3060-full_build\bin
+4. [youtube-uploader](https://github.com/tokland/youtube-upload)
 
-## Setting up
+## Setting up in Docker
+
+## Setting up in Windows
 1) Check if you have latest version of streamlink:
     * `streamlink --version` shows current version
     * `streamlink --version-check` shows available upgrade
@@ -29,7 +32,6 @@ client_secret = "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
 `client_id` - you can grab this from [here](https://dev.twitch.tv/console/apps) once you register your application  
 `client_secret` - you generate this [here](https://dev.twitch.tv/console/apps) as well, for your registered application
 
-## On Windows
 You can run the scipt from `cmd` or [terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab), by simply going to the directory where the script is located at and using command:
 ```shell script
 python Gui.py

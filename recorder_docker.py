@@ -87,8 +87,30 @@ class TwitchRecorder:
                 [self.ffmpeg_path, "-err_detect", "ignore_err", "-i", recorded_filename, "-c", "copy",
                  processed_filename])
             os.remove(recorded_filename)
+            #self.upload_vod(processed_filename, processed_filename) # if you want upload recoding file
+            #self.upload_vod(processed_filename, processed_filename, True) # if you want delete file after upload
         except Exception as e:
             logging.error(e)
+
+    def upload_vod(self, processed_file_path, title, remove = False):   
+        try:
+            logging.info("Starting upload")
+            title = title[len(os.path.join(self.root_path, "processed", self.username, self.username)):]
+            if(len(title) > 99):
+                title = title[len(title) - 100:]
+            subprocess.call([f"{self.python_path}",
+            "/usr/bin/youtube-upload",
+            f'--title={title}',
+            '--description="description"',
+            '--privacy=private',
+
+            f"{processed_file_path}"
+            ])
+            if remove :
+                os.remove(processed_file_path)
+        except Exception as e:
+            logging.error(e)
+
 
     def check_user(self):
         info = None

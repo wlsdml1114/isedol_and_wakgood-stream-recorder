@@ -62,7 +62,7 @@ class Recorder():
                 self.AppSecretCheck()
             else :
                 self.app_secret = self.config['CLIENT_SECRET']
-        self.PathCheck()
+        self.path = "/data/"
 
     def AppIdCheck(self):
         self.app_id = input('app id :')
@@ -73,11 +73,11 @@ class Recorder():
         print('your app secret is ', self.app_secret)
     
     def PathCheck(self):
-        self.path = input('stream video save path (default = running file directory) : ')
+        self.path = input('stream video save path (default path is docker mount path = /data/) : ')
         if os.path.exists(self.path):
             print('your video save path is ', self.path)
         else :
-            self.path = os.path.dirname(os.path.abspath(__file__))
+            self.path = "/data/"
             print('wrong path\nyour video save path is ', self.path)
 
     def run(self):
@@ -86,7 +86,7 @@ class Recorder():
 
     def GetConfigure(self):
         try:
-            with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'config.yaml'),encoding='utf-8') as file:
+            with open(os.path.join('/data/config.yaml'),encoding='utf-8') as file:
                 self.config = yaml.load(file,Loader=yaml.FullLoader)
         except:
             print("config.yaml file doesn't exist")

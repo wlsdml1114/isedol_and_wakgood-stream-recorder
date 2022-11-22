@@ -94,18 +94,28 @@ class TwitchRecorder:
 
     def upload_vod(self, processed_file_path, title, remove = False):   
         try:
+            if not(os.path.exists("/root/.client_secrets.json")):
+                 for name in os.listdir("/data/"):
+                    if "secret" in name :
+                        subprocess.call(["cp",os.path.join("/data/",name), "/root/.client_secrets.json"])
+                        break
             logging.info("Starting upload")
             title = title[len(os.path.join(self.root_path, "processed", self.username, self.username)):]
             if(len(title) > 99):
                 title = title[len(title) - 100:]
-            subprocess.call([f"{self.python_path}",
-            "/usr/bin/youtube-upload",
-            f'--title={title}',
-            '--description="description"',
-            '--privacy=private',
-
-            f"{processed_file_path}"
-            ])
+            # subprocess.call([f"{self.python_path}",
+            # "/usr/bin/youtube-upload",
+            # f'--title={title}',
+            # '--description="description"',
+            # '--privacy=private',
+            # f"{processed_file_path}"
+            # ])
+            subprocess.call(
+                "youtube-upload --title %s --description description --privacy private '%s'"%(
+                    title,
+                    processed_file_path
+                )
+            , shell=True)
             if remove :
                 os.remove(processed_file_path)
         except Exception as e:

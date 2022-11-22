@@ -21,6 +21,6 @@ WORKDIR 	isedol_and_wakgood-stream-recorder/
 # clone youtube-upload repository
 RUN			git clone https://github.com/tokland/youtube-upload.git
 WORKDIR		youtube-upload/
-RUN 		pip install --upgrade google-api-python-client oauth2client progressbar2 && \
+RUN 		pip install --upgrade google-api-python-client oauth2client progressbar2 pyyaml && \
     		python3 setup.py install
 

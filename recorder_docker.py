@@ -168,6 +168,8 @@ class TwitchRecorder:
 
                 # clean filename from unnecessary characters
                 filename = "".join(x for x in filename if x.isalnum() or x in [" ", "-", "_", "."])
+                # remove space
+                filename = filename.replace(" ","")
 
                 recorded_filename = os.path.join(recorded_path, filename)
                 processed_filename = os.path.join(processed_path, filename)

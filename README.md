@@ -1,6 +1,9 @@
 # Isedol and Woowakgood Stream Recorder
-This script allows you to record twitch streams live to .mp4 files.  
+This script allows you to record twitch streams live to .mp4 files and then upload them to YouTube.
+
 It is an improved version of [junian's twitch-recorder](https://gist.github.com/junian/b41dd8e544bf0e3980c971b0d015f5f6), migrated to [**helix**](https://dev.twitch.tv/docs/api) - the new twitch API. It uses OAuth2.
+
+
 ## Requirements (without Docker)
 ### If you want to run this project in Docker, you don't need to install requirements below
 1. [python3.9](https://www.python.org/downloads/release/python-3913/) or higher  
@@ -11,7 +14,7 @@ It is an improved version of [junian's twitch-recorder](https://gist.github.com/
         * ex) C:\Users\user\Downloads\ffmpeg-2022-11-03-git-5ccd4d3060-full_build\bin
 4. [youtube-uploader](https://github.com/tokland/youtube-upload)
 
-## Setting up in Docker
+## Setting up in Docker (Recommended)
 1) Download and install docker
     * [Docker](https://www.docker.com/)
 2) Download or build docker image (choose one)
@@ -65,6 +68,7 @@ It is an improved version of [junian's twitch-recorder](https://gist.github.com/
         * contents of config.yaml file
         * `client_id` - you can grab this from [here](https://dev.twitch.tv/console/apps) once you register your application  
         * `client_secret` - you generate this [here](https://dev.twitch.tv/console/apps) as well, for your registered application
+        ![t2i](images/twitch-config.yaml.PNG)
             ```
             client_id : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
             client_secret : "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
@@ -119,7 +123,7 @@ It is an improved version of [junian's twitch-recorder](https://gist.github.com/
             * _Create a Client ID_: Add credentials -> OAuth 2.0 Client ID -> Other -> Name: youtube-upload -> Create -> OK
             * _Download JSON_: Under the section "OAuth 2.0 client IDs". Save the file to your local system. 
             * Use this JSON as your credentials file: `--client-secrets=CLIENT_SECRETS` or copy it to `~/client_secrets.json`.
-
+            ![t2i](images/youtube-client_secrets.PNG)
             *Note: ```client_secrets.json``` is a file you can download from the developer console, the credentials file is something auto generated after the first time the script is run and the google account sign in is followed, the file is stored at ```~/.youtube-upload-credentials.json```.*
         * For make cretential run code below just once
             ```
